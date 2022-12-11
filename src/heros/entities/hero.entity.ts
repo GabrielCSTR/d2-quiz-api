@@ -11,10 +11,11 @@ import {
 @Entity('heros')
 export class HeroEntity {
   @ObjectIdColumn()
-  _id: ObjectID;
+  _id?: ObjectID;
 
   @Column({
     type: 'number',
+    unique: true,
   })
   hero_id: number;
 
@@ -43,11 +44,16 @@ export class HeroEntity {
   })
   hero_skill_id?: string;
 
+  @Column({
+    type: 'string',
+  })
+  lang: string;
+
   @CreateDateColumn()
-  created_at: Date;
+  created_at?: Date;
 
   @UpdateDateColumn()
-  updated_at: Date;
+  updated_at?: Date;
 
   @DeleteDateColumn()
   deleted_at?: Date;

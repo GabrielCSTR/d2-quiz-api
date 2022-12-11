@@ -5,6 +5,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ormConfig } from './database/ormconfig';
 import { HerosModule } from './heros/heros.module';
+import { IntegrationsModule } from './integrations/integrations.module';
+import { UpdatesModule } from './updates/updates.module';
 
 @Module({
   imports: [
@@ -13,6 +15,8 @@ import { HerosModule } from './heros/heros.module';
     }),
     TypeOrmModule.forRoot(ormConfig()),
     HerosModule,
+    UpdatesModule,
+    IntegrationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
