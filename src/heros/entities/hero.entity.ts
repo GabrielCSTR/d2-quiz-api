@@ -17,27 +17,27 @@ export class HeroEntity {
     type: 'number',
     unique: true,
   })
-  hero_id: number;
+  hero_id?: number;
 
   @Column({
     type: 'string',
   })
-  name: string;
+  name?: string;
 
   @Column({
     type: 'string',
   })
-  name_loc: string;
+  name_loc?: string;
 
   @Column({
     type: 'number',
   })
-  complexity: number;
+  complexity?: number;
 
   @Column({
     type: 'number',
   })
-  primary_attr: number;
+  primary_attr?: number;
 
   @Column({
     type: 'string',

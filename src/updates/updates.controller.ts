@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Query } from '@nestjs/common';
 import { UpdatesService } from './updates.service';
 
-@Controller('updatesHeros')
+@Controller('update')
 export class UpdatesController {
   constructor(private readonly updatesService: UpdatesService) {}
 
@@ -10,8 +10,13 @@ export class UpdatesController {
     return this.updatesService.findAll();
   }
 
-  @Post()
+  @Post('/heros')
   updateHeros(@Query('lang') lang: string) {
     return this.updatesService.updateHeros(lang);
+  }
+
+  @Post('/herosinfo')
+  updateHerosInfo(@Query('lang') lang: string) {
+    return this.updatesService.updateHerosInfo(lang);
   }
 }

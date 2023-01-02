@@ -1,6 +1,7 @@
 import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { Method } from './types/method';
+import { catchError } from 'rxjs';
 
 @Injectable()
 export class IntegrationsService {
@@ -12,6 +13,15 @@ export class IntegrationsService {
         url,
         method,
       })
-      .toPromise();
+      .pipe(
+        catchError((e) => {
+          const { error } = e.response.data;
+          throw new BadRequestException(error.error_user_msg);
+        }),
+      )
+      .toPromise()
+      .then(function (response) {
+        return response.data.result;
+      });
   }
 }
