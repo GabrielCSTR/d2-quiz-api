@@ -1,0 +1,27 @@
+version: '3.1'
+
+services:
+  app:
+    build: .
+    entrypoint: .docker/entrypoint.sh
+    container_name: d2-quiz-app
+    ports:
+      - "3003:3003"
+    volumes:
+      - .:/home/node/app
+    depends_on:
+      - db
+
+  db:
+    build: .docker/mongodb
+    container_name: d2-quiz-db
+    restart: always
+    tty: true
+    ports:
+      - "27017:27017"
+    volumes:
+      - .docker/dbdata:/var/lib/mongodb/data
+    environment:
+      - MONGODB_DATABASE=d2-quiz
+      - MONGO_ROOT_USER=mongo
+      - MONGO_ROOT_PASSWORD=mongo

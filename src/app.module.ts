@@ -10,6 +10,7 @@ import { UpdatesModule } from './updates/updates.module';
 import { join } from 'path';
 import { HeroInfosModule } from './hero-infos/hero-infos.module';
 
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -18,7 +19,7 @@ import { HeroInfosModule } from './hero-infos/hero-infos.module';
     // TypeOrmModule.forRoot(ormConfig()),
     TypeOrmModule.forRoot({
       type: 'mongodb',
-      url: 'mongodb+srv://root:DEVstr2305@cluster0.regu1gc.mongodb.net',
+      url: process.env.DATABASE_HOST,
       entities: [join(__dirname, '**/**.entity{.ts,.js}')],
       synchronize: true,
       useNewUrlParser: true,
